@@ -13,7 +13,7 @@ Been having issues with the Ultralytics version being too recent and the model n
 
 model = YOLO('best.pt')
 
-results = model.predict("Test_Images/Test img 1.png", device='cpu')
+results = model.predict("images/3.png", device=0)
 print(model.names)
 color_vals = [
     (0, 0, 255),
@@ -33,8 +33,8 @@ for result in results:
     for box in boxes:
         x1, y1, x2, y2 = map(int, box.xyxy[0])
         confidence = float(box.conf[0].item())
-        if confidence < 0.7:
-            continue
+        # if confidence < 0.5:
+        #     continue
         class_id = int(box.cls[0].item())
         label = f"{model.names[class_id]} {confidence:.2f}"
         cv2.rectangle(img, (x1, y1), (x2, y2), color_vals[class_id], 2)
@@ -43,8 +43,8 @@ for result in results:
 
     # resize image to half its size before displaying
     h, w = img.shape[:2]
-    img = cv2.resize(img, (w // 3, h // 3), interpolation=cv2.INTER_AREA)
+    img = cv2.resize(img, (w // 2, h // 2), interpolation=cv2.INTER_AREA)
     cv2.imshow("Predictions", img)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
-    cv2.imwrite("outputs/predicted_image_2.png", img)
+    cv2.imwrite("predicted_image.png", img)

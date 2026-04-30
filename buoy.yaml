@@ -1,10 +1,14 @@
+path: data
+train: images/train
+val: images/val
+test:
 
-# Train/val/test sets as 1) dir: path/to/imgs, 2) file: path/to/imgs.txt, or 3) list: [path/to/imgs1, path/to/imgs2, ..]
-path: data # dataset root dir
-train: images/train # train images (relative to 'path') 4 images
-val: images/val # val images (relative to 'path') 4 images
-test: # test images (optional)
-
-# Classes
 names:
-  0: green_buoy
+  0: red_buoy
+  1: lime_buoy
+  2: blue_buoy
+  3: orange_buoy
+  4: cranberry_buoy
+  5: yellow_buoy
+  6: white_buoy
+  7: black_buoy
